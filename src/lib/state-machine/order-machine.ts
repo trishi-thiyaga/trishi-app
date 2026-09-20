@@ -28,20 +28,20 @@ export function calculatePricing(
   category: 'SCHOOL_SCIENCE' | 'COLLEGE_ENGINEERING' | 'RESEARCH_SUPPORT',
   partsCost: number,
   estimatedHours: number,
-  creatorHourlyRate: number = 25
+  creatorHourlyRate: number = 250 // ₹250/hour creator stipend
 ): PricingBreakdown {
-  const laborEstimate = Math.max(20, estimatedHours * creatorHourlyRate);
+  const laborEstimate = Math.max(500, estimatedHours * creatorHourlyRate);
   
   // Category-specific transparent platform service charge percentage
   let platformServiceChargePercent = 10;
-  let deliveryCost = 15;
+  let deliveryCost = 250; // ₹250 Pan-India secured STEM courier
   
   if (category === 'COLLEGE_ENGINEERING') {
     platformServiceChargePercent = 12;
-    deliveryCost = 25;
+    deliveryCost = 450;
   } else if (category === 'RESEARCH_SUPPORT') {
     platformServiceChargePercent = 15;
-    deliveryCost = 40;
+    deliveryCost = 750;
   }
 
   const subtotal = partsCost + laborEstimate;

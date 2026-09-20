@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { useApp } from '@/lib/context/AppContext';
 import { Idea } from '@/lib/types';
-import { Lightbulb, Plus, GitBranch, Users, Rocket, Sparkles, CheckCircle2 } from 'lucide-react';
+import { formatINR } from '@/lib/utils';
+import { Lightbulb, Plus, GitBranch, Users, Rocket, Sparkles, CheckCircle2, IndianRupee } from 'lucide-react';
 
 export const IdeaGroomingBoard: React.FC = () => {
   const { ideas, selectedIdeaId, setSelectedIdeaId, currentUser, handleCreateIdea, handleAddIdeaRevision } = useApp();
@@ -19,7 +20,7 @@ export const IdeaGroomingBoard: React.FC = () => {
   // New Revision State
   const [revSummary, setRevSummary] = useState('');
   const [revScope, setRevScope] = useState('');
-  const [revBOM, setRevBOM] = useState('Microcontroller, Solar Panel, Sensor Array');
+  const [revBOM, setRevBOM] = useState('Microcontroller (ESP32/Arduino), Solar Panel, Sensor Array');
 
   const selectedIdea = ideas.find((i) => i.id === selectedIdeaId) || ideas[0];
 
@@ -47,11 +48,11 @@ export const IdeaGroomingBoard: React.FC = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <div>
           <span className="badge badge-amber" style={{ marginBottom: '6px' }}>
-            Workflow B — Community Idea Exchange
+            Workflow B — Community Idea Exchange & RFCs
           </span>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Idea Exchange, Grooming & RFC Ledger</h1>
+          <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Idea Exchange, Grooming & RFC Equity Ledger</h1>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            Students & makers submit raw ideas, groom them collaboratively via RFC revisions, and establish IP contributor equity.
+            Young student inventors submit breakthrough ideas, groom them collaboratively via versioned RFCs, and establish legal IP contributor equity in ₹ INR.
           </p>
         </div>
 
@@ -108,7 +109,7 @@ export const IdeaGroomingBoard: React.FC = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                   <span>By <strong>{idea.originatorName}</strong> ({idea.originatorAge}yo)</span>
                   <span style={{ color: 'var(--accent-emerald)', fontWeight: 700 }}>
-                    Feasibility: {idea.feasibilityScore}%
+                    Target: {formatINR(idea.estimatedFundingNeeded)}
                   </span>
                 </div>
               </div>
@@ -125,10 +126,11 @@ export const IdeaGroomingBoard: React.FC = () => {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                     <span className="badge badge-amber">Idea #{selectedIdea.id}</span>
                     <span className="badge badge-cyan">Feasibility Score: {selectedIdea.feasibilityScore}%</span>
+                    <span className="badge badge-saffron">Seed Target: {formatINR(selectedIdea.estimatedFundingNeeded)}</span>
                   </div>
                   <h2 style={{ fontSize: '1.4rem', fontWeight: 800 }}>{selectedIdea.title}</h2>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-                    Originated by <strong>{selectedIdea.originatorName}</strong> ({selectedIdea.originatorAge}yo)
+                    Originated by <strong>{selectedIdea.originatorName}</strong> ({selectedIdea.originatorAge}yo) • Made for India
                   </p>
                 </div>
 

@@ -73,36 +73,36 @@ export const Navbar: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div
               style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '12px',
-                background: 'linear-gradient(135deg, #00f2fe 0%, #7928ca 100%)',
+                width: '44px',
+                height: '44px',
+                borderRadius: '14px',
+                background: 'linear-gradient(135deg, #00f2fe 0%, #ff9933 50%, #a855f7 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 0 16px rgba(0, 242, 254, 0.4)',
+                boxShadow: '0 0 20px rgba(0, 242, 254, 0.45)',
               }}
             >
-              <Rocket size={24} color="#070a12" />
+              <Rocket size={24} color="#060913" />
             </div>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span
                   style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: '1.35rem',
-                    fontWeight: 800,
+                    fontSize: '1.4rem',
+                    fontWeight: 900,
                     letterSpacing: '-0.02em',
                   }}
                 >
                   Young Dream <span className="gradient-text">Innovators</span>
                 </span>
-                <span className="badge badge-cyan" style={{ fontSize: '0.65rem' }}>
-                  <Sparkles size={12} /> Live Platform
+                <span className="badge badge-saffron" style={{ fontSize: '0.65rem' }}>
+                  <Sparkles size={12} /> 🇮🇳 India STEM Hub
                 </span>
               </div>
               <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                "Every great scientist started as a kid with an idea."
+                "Every great scientist started as a kid with an idea." • Powered in ₹ INR
               </p>
             </div>
           </div>

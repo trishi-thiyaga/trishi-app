@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useApp } from '@/lib/context/AppContext';
 import { ProjectCategory } from '@/lib/types';
 import { calculatePricing } from '@/lib/state-machine/order-machine';
+import { formatINR } from '@/lib/utils';
 import { X, Plus, Calculator, CheckCircle2 } from 'lucide-react';
 
 interface Props {
@@ -19,7 +20,7 @@ export const OrderIntakeModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const [academicLevel, setAcademicLevel] = useState('Grade 9 Science Fair');
   const [subjectDomain, setSubjectDomain] = useState('Environmental Electronics');
   const [description, setDescription] = useState('');
-  const [budgetCeiling, setBudgetCeiling] = useState(200);
+  const [budgetCeiling, setBudgetCeiling] = useState(7500);
 
   const [deliverables, setDeliverables] = useState<string[]>([
     'Working Physical Prototype Model',
@@ -84,7 +85,7 @@ export const OrderIntakeModal: React.FC<Props> = ({ isOpen, onClose }) => {
           <div>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800 }}>Request a Project Build</h2>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-              Fill in your academic requirements. Verified student-makers will build and ship your working prototype.
+              Fill in your academic requirements. Verified student-makers across India will build and ship your prototype.
             </p>
           </div>
           <button onClick={onClose} className="btn-secondary" style={{ padding: '6px' }}>
@@ -190,14 +191,14 @@ export const OrderIntakeModal: React.FC<Props> = ({ isOpen, onClose }) => {
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
               <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
-                Budget Ceiling: <span style={{ color: 'var(--accent-cyan)' }}>${budgetCeiling}</span>
+                Budget Ceiling (₹ INR): <span style={{ color: 'var(--accent-cyan)' }}>{formatINR(budgetCeiling)}</span>
               </label>
             </div>
             <input
               type="range"
-              min={100}
-              max={1500}
-              step={25}
+              min={1000}
+              max={50000}
+              step={500}
               value={budgetCeiling}
               onChange={(e) => setBudgetCeiling(Number(e.target.value))}
               style={{ width: '100%', accentColor: 'var(--accent-cyan)' }}
@@ -216,17 +217,17 @@ export const OrderIntakeModal: React.FC<Props> = ({ isOpen, onClose }) => {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <Calculator size={18} color="var(--accent-cyan)" />
               <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
-                Transparent Pricing Line-Item Estimate
+                Transparent Pricing Line-Item Estimate (in ₹ INR)
               </span>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '0.8rem' }}>
-              <div>Parts & Components Estimate: <strong>${livePricing.partsCost}</strong></div>
-              <div>Creator Labor Estimate: <strong>${livePricing.laborEstimate}</strong></div>
+              <div>Parts & Components Estimate: <strong>{formatINR(livePricing.partsCost)}</strong></div>
+              <div>Creator Labor Estimate: <strong>{formatINR(livePricing.laborEstimate)}</strong></div>
               <div>
-                Platform Service Charge ({livePricing.platformServiceChargePercent}%): <strong>${livePricing.platformServiceFee}</strong>
+                Platform Fee ({livePricing.platformServiceChargePercent}%): <strong>{formatINR(livePricing.platformServiceFee)}</strong>
               </div>
-              <div>Shipping & Delivery: <strong>${livePricing.deliveryCost}</strong></div>
+              <div>Courier Delivery: <strong>{formatINR(livePricing.deliveryCost)}</strong></div>
             </div>
 
             <div
@@ -241,7 +242,7 @@ export const OrderIntakeModal: React.FC<Props> = ({ isOpen, onClose }) => {
             >
               <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>Estimated Total Price:</span>
               <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                ${livePricing.totalPrice}
+                {formatINR(livePricing.totalPrice)}
               </span>
             </div>
           </div>

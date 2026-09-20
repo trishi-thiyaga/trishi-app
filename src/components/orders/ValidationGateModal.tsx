@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Order } from '@/lib/types';
 import { useApp } from '@/lib/context/AppContext';
-import { ShieldCheck, X, Check, AlertCircle } from 'lucide-react';
+import { ShieldCheck, X, Check, AlertCircle, Award, CheckCircle2 } from 'lucide-react';
 
 interface Props {
   order?: Order;
@@ -17,7 +17,7 @@ export const ValidationGateModal: React.FC<Props> = ({ order, isOpen, onClose })
   const [safetyScore, setSafetyScore] = useState(95);
   const [functionalityScore, setFunctionalityScore] = useState(90);
   const [craftsmanshipScore, setCraftsmanshipScore] = useState(88);
-  const [feedback, setFeedback] = useState('Excellent electrical wiring insulation and non-toxic materials used. Clear build log steps.');
+  const [feedback, setFeedback] = useState('Meets BIS & ATL Extra-Low Voltage (SELV ≤ 5V) safety standards. Lead-free solder and non-toxic PLA housing verified.');
 
   if (!isOpen || !order) return null;
 
@@ -47,16 +47,21 @@ export const ValidationGateModal: React.FC<Props> = ({ order, isOpen, onClose })
         className="glass-card"
         style={{
           width: '100%',
-          maxWidth: '650px',
+          maxWidth: '680px',
           padding: '28px',
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
           <div>
-            <span className="badge badge-purple" style={{ marginBottom: '4px' }}>
-              Mentor / Validator Quality Gate (Section 3.2)
-            </span>
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 800 }}>Validation Rubric Evaluation</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+              <span className="badge badge-saffron">
+                🇮🇳 BIS & ATL Quality Evaluation Gate
+              </span>
+              <span className="badge badge-purple">
+                IS 13252 / SELV Compliant
+              </span>
+            </div>
+            <h2 style={{ fontSize: '1.35rem', fontWeight: 800 }}>Mentor Quality & Safety Rubric Gate</h2>
           </div>
           <button onClick={onClose} className="btn-secondary" style={{ padding: '6px' }}>
             <X size={20} />
@@ -75,14 +80,14 @@ export const ValidationGateModal: React.FC<Props> = ({ order, isOpen, onClose })
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
               <label style={{ fontSize: '0.85rem', fontWeight: 700 }}>
-                1. Electrical & Physical Safety Check (Weight: 40%) *
+                1. BIS & ATL Electrical Safety Audit (Weight: 40%) *
               </label>
               <span style={{ fontSize: '0.85rem', fontWeight: 800, color: safetyScore >= 80 ? 'var(--accent-emerald)' : 'var(--accent-red)' }}>
                 {safetyScore}/100
               </span>
             </div>
             <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
-              Verify low voltage limits, no sharp edges, non-toxic materials, and safe battery handling.
+              Verify Extra-Low Voltage limits (SELV ≤ 24V DC), lead-free RoHS solder, insulated wiring harnesses, and no hazardous chemical handling.
             </p>
             <input
               type="range"
@@ -111,6 +116,9 @@ export const ValidationGateModal: React.FC<Props> = ({ order, isOpen, onClose })
                 {functionalityScore}/100
               </span>
             </div>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
+              Microcontroller firmware telemetry, sensor threshold triggering, solar power charging efficiency, and stability.
+            </p>
             <input
               type="range"
               min={50}
@@ -121,7 +129,7 @@ export const ValidationGateModal: React.FC<Props> = ({ order, isOpen, onClose })
             />
           </div>
 
-          {/* Age-Appropriate Craftsmanship */}
+          {/* Age-Appropriate Craftsmanship & NEP 2020 Pedagogical Value */}
           <div
             style={{
               background: 'rgba(255, 255, 255, 0.02)',
@@ -132,12 +140,15 @@ export const ValidationGateModal: React.FC<Props> = ({ order, isOpen, onClose })
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
               <label style={{ fontSize: '0.85rem', fontWeight: 700 }}>
-                3. Age-Appropriate Craftsmanship & Originality (Weight: 25%) *
+                3. NEP 2020 Experiential Craftsmanship & Explainer Quality (Weight: 25%) *
               </label>
               <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#c084fc' }}>
                 {craftsmanshipScore}/100
               </span>
             </div>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
+              Educational value for school science fair defense, viva voce Q&A preparation pack, and neat structural assembly.
+            </p>
             <input
               type="range"
               min={50}
@@ -151,10 +162,10 @@ export const ValidationGateModal: React.FC<Props> = ({ order, isOpen, onClose })
           {/* Feedback Notes */}
           <div>
             <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 600, display: 'block', marginBottom: '6px' }}>
-              Structured Mentor Feedback Notes
+              Structured Mentor Feedback & Compliance Audit Notes
             </label>
             <textarea
-              rows={3}
+              rows={2}
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
               style={{
@@ -185,7 +196,7 @@ export const ValidationGateModal: React.FC<Props> = ({ order, isOpen, onClose })
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               {isPassing ? <ShieldCheck color="var(--accent-emerald)" size={20} /> : <AlertCircle color="var(--accent-red)" size={20} />}
               <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>
-                Weighted Rubric Average: {averageScore}% — {isPassing ? 'PASSED QUALIFICATION' : 'NEEDS REVISION'}
+                Weighted Rubric Average: {averageScore}% — {isPassing ? 'PASSED INDIAN STANDARDS QUALIFICATION' : 'NEEDS REVISION'}
               </span>
             </div>
           </div>
@@ -195,7 +206,7 @@ export const ValidationGateModal: React.FC<Props> = ({ order, isOpen, onClose })
               <X size={16} /> Reject & Return to IN_PROGRESS
             </button>
             <button type="button" onClick={() => handleAction(true)} className="btn-emerald">
-              <Check size={16} /> Approve & Advance Order
+              <Check size={16} /> Certify & Advance Order
             </button>
           </div>
         </div>

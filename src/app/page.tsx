@@ -3,6 +3,7 @@
 import React from 'react';
 import { useApp } from '@/lib/context/AppContext';
 import { Navbar } from '@/components/layout/Navbar';
+import { YoungInnovatorHero } from '@/components/layout/YoungInnovatorHero';
 import { OrdersView } from '@/components/orders/OrdersView';
 import { IdeaGroomingBoard } from '@/components/ideas/IdeaGroomingBoard';
 import { SponsorEscrowHub } from '@/components/sponsorship/SponsorEscrowHub';
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
+      <YoungInnovatorHero />
 
       <main style={{ flex: 1 }}>
         {activeTab === 'ORDERS' && <OrdersView />}
@@ -40,10 +42,13 @@ export default function Home() {
       >
         <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
           <div>
-            <strong>Young Dream Innovators Platform</strong> — "Every great scientist started as a kid with an idea."
+            <strong>Young Dream Innovators 🇮🇳</strong> — "Every great scientist started as a kid with an idea."
           </div>
-          <div>
-            Child Safety Compliant (COPPA & DPDP) • Guardian Custodial Payouts • Escrow Backed
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <span className="badge badge-saffron" style={{ fontSize: '0.65rem' }}>DPDP Act 2023 Compliant</span>
+            <span className="badge badge-cyan" style={{ fontSize: '0.65rem' }}>ATL Safety Standards</span>
+            <span className="badge badge-emerald" style={{ fontSize: '0.65rem' }}>RBI Custodial Escrow</span>
+            <span className="badge badge-purple" style={{ fontSize: '0.65rem' }}>NEP 2020 Aligned</span>
           </div>
         </div>
       </footer>

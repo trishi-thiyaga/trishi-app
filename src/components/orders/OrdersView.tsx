@@ -7,6 +7,7 @@ import { BuildLogFeed } from './BuildLogFeed';
 import { OrderIntakeModal } from './OrderIntakeModal';
 import { ExplainerPackModal } from './ExplainerPackModal';
 import { ValidationGateModal } from './ValidationGateModal';
+import { formatINR } from '@/lib/utils';
 import {
   Plus,
   Rocket,
@@ -17,6 +18,7 @@ import {
   User,
   Package,
   FileCheck,
+  Sparkles,
 } from 'lucide-react';
 
 export const OrdersView: React.FC = () => {
@@ -34,11 +36,11 @@ export const OrdersView: React.FC = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <div>
           <span className="badge badge-cyan" style={{ marginBottom: '6px' }}>
-            Workflow A — Order-Based Delivery
+            Workflow A — Order-Based Prototype Delivery
           </span>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Project Intake & Delivery Engine</h1>
+          <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Project Intake & Prototype Delivery Engine</h1>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            Students & researchers order working physical prototypes built by verified young makers with stage-by-stage progress logs.
+            Students & schools order working physical STEM prototypes built by verified young makers with stage-by-stage build logs.
           </p>
         </div>
 
@@ -84,8 +86,8 @@ export const OrdersView: React.FC = () => {
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                   <span>Requester: <strong>{ord.requesterName}</strong></span>
-                  <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                    ${ord.pricing?.totalPrice || ord.budgetCeiling}
+                  <span style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
+                    {formatINR(ord.pricing?.totalPrice || ord.budgetCeiling)}
                   </span>
                 </div>
               </div>
@@ -113,7 +115,7 @@ export const OrdersView: React.FC = () => {
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Transparent Total Price</div>
                   <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                    ${selectedOrder.pricing?.totalPrice || selectedOrder.budgetCeiling}
+                    {formatINR(selectedOrder.pricing?.totalPrice || selectedOrder.budgetCeiling)}
                   </div>
                 </div>
               </div>
@@ -155,13 +157,13 @@ export const OrdersView: React.FC = () => {
               {selectedOrder.pricing && (
                 <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
                   <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--accent-cyan)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <Calculator size={16} /> Itemized Fee Breakdown (Section 3.1 Trust Disclosure)
+                    <Calculator size={16} /> Itemized Fee Breakdown (Section 3.1 Trust Disclosure in ₹ INR)
                   </h4>
-                  <div style={{ display: 'flex', gap: '20px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                    <span>Parts BOM: <strong>${selectedOrder.pricing.partsCost}</strong></span>
-                    <span>Creator Labor: <strong>${selectedOrder.pricing.laborEstimate}</strong></span>
-                    <span>Service Fee ({selectedOrder.pricing.platformServiceChargePercent}%): <strong>${selectedOrder.pricing.platformServiceFee}</strong></span>
-                    <span>Shipping: <strong>${selectedOrder.pricing.deliveryCost}</strong></span>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                    <span>Parts BOM: <strong>{formatINR(selectedOrder.pricing.partsCost)}</strong></span>
+                    <span>Creator Labor: <strong>{formatINR(selectedOrder.pricing.laborEstimate)}</strong></span>
+                    <span>Platform Fee ({selectedOrder.pricing.platformServiceChargePercent}%): <strong>{formatINR(selectedOrder.pricing.platformServiceFee)}</strong></span>
+                    <span>Courier Delivery: <strong>{formatINR(selectedOrder.pricing.deliveryCost)}</strong></span>
                   </div>
                 </div>
               )}

@@ -101,8 +101,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const handleCreateOrder = (orderData: Partial<Order>): Order => {
     const category: ProjectCategory = orderData.category || 'SCHOOL_SCIENCE';
-    const estimatedHours = 15;
-    const partsCost = orderData.budgetCeiling ? Math.round(orderData.budgetCeiling * 0.45) : 75;
+    const estimatedHours = 12;
+    const partsCost = orderData.budgetCeiling ? Math.round(orderData.budgetCeiling * 0.45) : 3500;
     const pricing = calculatePricing(category, partsCost, estimatedHours);
 
     const newOrder: Order = {
@@ -207,7 +207,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       problemStatement: ideaData.problemStatement || 'Problem description',
       proposedSolution: ideaData.proposedSolution || 'Solution description',
       category: ideaData.category || 'SCHOOL_SCIENCE',
-      tags: ideaData.tags || ['Innovation', 'Student Maker'],
+      tags: ideaData.tags || ['Innovation', 'Student Maker', 'Make in India'],
       originatorId: currentUser.id,
       originatorName: currentUser.name,
       originatorAge: currentUser.age || 16,
@@ -222,7 +222,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           authorRole: currentUser.role,
           changesSummary: 'Initial idea concept submission',
           updatedScope: ideaData.proposedSolution || 'Initial proposal scope',
-          updatedBOM: ['Microcontroller', 'Battery', 'Sensor'],
+          updatedBOM: ['Microcontroller (ESP32/Arduino)', 'Li-Ion Battery Pack', 'Sensor Array'],
           estimatedBuildHours: 16,
         },
       ],
@@ -234,8 +234,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           contributionPercentage: 100,
         },
       ],
-      feasibilityScore: 85,
-      estimatedFundingNeeded: 350,
+      feasibilityScore: 88,
+      estimatedFundingNeeded: 20000,
       createdAt: new Date().toISOString(),
     };
 

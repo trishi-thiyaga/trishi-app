@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useApp } from '@/lib/context/AppContext';
+import { formatINR } from '@/lib/utils';
 import { DollarSign, ShieldCheck, CheckCircle2, Lock, FileSignature, Award, Sparkles } from 'lucide-react';
 
 export const SponsorEscrowHub: React.FC = () => {
@@ -20,7 +21,7 @@ export const SponsorEscrowHub: React.FC = () => {
           </span>
           <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Sponsor Discovery & Escrow Milestone Hub</h1>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            Institutions & sponsors fund student prototype milestones held in escrow and execute co-branding commercial contracts.
+            Institutions & sponsors fund student prototype milestones held in escrow vaults and execute co-branding commercial contracts in ₹ INR.
           </p>
         </div>
       </div>
@@ -46,7 +47,7 @@ export const SponsorEscrowHub: React.FC = () => {
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Total Escrow Pool</div>
                   <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                    ${activeEscrow.totalAmount}
+                    {formatINR(activeEscrow.totalAmount)}
                   </div>
                 </div>
               </div>
@@ -88,14 +89,14 @@ export const SponsorEscrowHub: React.FC = () => {
                       <div>
                         <h4 style={{ fontSize: '0.9rem', fontWeight: 700 }}>{m.title}</h4>
                         <span style={{ fontSize: '0.75rem', color: m.isReleased ? 'var(--accent-emerald)' : 'var(--text-muted)' }}>
-                          {m.isReleased ? '✅ Funds Released to Creator Wallet' : '🔒 Locked in Escrow until Validation Gate'}
+                          {m.isReleased ? '✅ Funds Released to Guardian Custodial Wallet' : '🔒 Locked in Escrow until Validation Gate'}
                         </span>
                       </div>
                     </div>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <span style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                        ${m.amount}
+                        {formatINR(m.amount)}
                       </span>
                       {!m.isReleased && (
                         <button

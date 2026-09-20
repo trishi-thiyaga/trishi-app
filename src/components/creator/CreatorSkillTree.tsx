@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { CREATOR_TIERS } from '@/lib/services/mock-db';
+import { formatINR } from '@/lib/utils';
 import { Award, CheckCircle2, Lock, Sparkles, Star } from 'lucide-react';
 
 export const CreatorSkillTree: React.FC = () => {
@@ -18,7 +19,7 @@ export const CreatorSkillTree: React.FC = () => {
           </span>
           <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Student Creator Tier Progression & Skill Tree</h1>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            Visible journey from Apprentice fulfilling kit orders to Young Entrepreneur originating sponsor-backed inventions.
+            Visible journey from Apprentice fulfilling kit orders to Young Entrepreneur originating sponsor-backed inventions in ₹ INR.
           </p>
         </div>
       </div>
@@ -130,7 +131,7 @@ export const CreatorSkillTree: React.FC = () => {
                       {!isUnlocked && <span className="badge badge-purple"><Lock size={12} /> Locked</span>}
                     </div>
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-                      Requirements: {tier.minCompleted} Completed Builds • {tier.minRating}★ Rating • Max Order Limit: ${tier.maxOrderValue}
+                      Requirements: {tier.minCompleted} Completed Builds • {tier.minRating}★ Rating • Max Order Limit: {formatINR(tier.maxOrderValue)}
                     </p>
                   </div>
                 </div>
@@ -138,7 +139,7 @@ export const CreatorSkillTree: React.FC = () => {
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Tier Max Order</div>
                   <div style={{ fontSize: '1.2rem', fontWeight: 800, color: isUnlocked ? 'var(--accent-cyan)' : 'var(--text-muted)' }}>
-                    ${tier.maxOrderValue}
+                    {formatINR(tier.maxOrderValue)}
                   </div>
                 </div>
               </div>
