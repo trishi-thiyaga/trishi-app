@@ -10,6 +10,9 @@ import {
   ModeratedMessage,
   OrderState,
   ProjectCategory,
+  ActiveTab,
+  InnovationStory,
+  InnovationPod,
 } from '../types';
 import {
   INITIAL_USERS,
@@ -18,10 +21,10 @@ import {
   INITIAL_ESCROW,
   INITIAL_AGREEMENTS,
   INITIAL_MODERATED_MESSAGES,
+  INITIAL_STORIES,
+  INITIAL_PODS,
 } from '../services/mock-db';
 import { transitionOrderState, calculatePricing } from '../state-machine/order-machine';
-
-type ActiveTab = 'ORDERS' | 'IDEAS' | 'SPONSORSHIP' | 'SAFETY' | 'CREATOR_TREE' | 'DOCS';
 
 interface AppContextType {
   currentUser: User;
@@ -29,6 +32,20 @@ interface AppContextType {
   users: User[];
   activeTab: ActiveTab;
   setActiveTab: (tab: ActiveTab) => void;
+  
+  // Stories & Blog
+  stories: InnovationStory[];
+  selectedStoryId: string | null;
+  setSelectedStoryId: (id: string | null) => void;
+  handleLikeStory: (storyId: string) => void;
+  handleCreateStory: (storyData: Partial<InnovationStory>) => void;
+
+  // Talent & Pods
+  pods: InnovationPod[];
+  handleJoinPod: (podId: string, role: string) => void;
+  handleCreatePod: (podData: Partial<InnovationPod>) => void;
+
+  // Projects / Innovation Lab
   orders: Order[];
   selectedOrderId: string | null;
   setSelectedOrderId: (id: string | null) => void;
@@ -56,8 +73,13 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [users] = useState<User[]>(INITIAL_USERS);
-  const [currentUser, setCurrentUser] = useState<User>(INITIAL_USERS[0]); // Ananya (Requester)
-  const [activeTab, setActiveTab] = useState<ActiveTab>('ORDERS');
+  const [currentUser, setCurrentUser] = useState<User>(INITIAL_USERS[0]); // Aarav Patel
+  const [activeTab, setActiveTab] = useState<ActiveTab>('YOUTUBE');
+  
+  const [stories, setStories] = useState<InnovationStory[]>(INITIAL_STORIES);
+  const [selectedStoryId, setSelectedStoryId] = useState<string | null>(INITIAL_STORIES[0].id);
+  
+  const [pods, setPods] = useState<InnovationPod[]>(INITIAL_PODS);
   
   const [orders, setOrders] = useState<Order[]>(INITIAL_ORDERS);
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(INITIAL_ORDERS[0].id);
@@ -315,6 +337,84 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     );
   };
 
+  const handleLikeStory = (storyId: string) => {
+    setStories((prev) =>
+      prev.map((s) => (s.id === storyId ? { ...s, likesCount: s.likesCount + 1 } : s))
+    );
+    showNotification('❤️ You cheered for this young innovator story!');
+  };
+
+  const handleCreateStory = (storyData: Partial<InnovationStory>) => {
+    const newStory: InnovationStory = {
+      id: `STORY-${Math.floor(100 + Math.random() * 900)}`,
+      title: storyData.title || 'Untitled Innovation Journey',
+      subtitle: storyData.subtitle || 'A student maker breakthrough',
+      author: currentUser.name,
+      authorAge: currentUser.age || 15,
+      authorRole: currentUser.role.replace('_', ' '),
+      authorAvatar: currentUser.avatarUrl,
+      category: storyData.category || 'ROBOTICS',
+      readTime: '3 min read',
+      coverImage:
+        storyData.coverImage ||
+        'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800',
+      tags: storyData.tags || ['Student Maker', 'NEP 2020'],
+      summary: storyData.summary || 'A new collaborative innovation project.',
+      fullContent: storyData.fullContent || 'Detailed build and collaboration log.',
+      keyConcepts: storyData.keyConcepts || ['Hands-on STEM', 'Peer Collaboration'],
+      prototypeSpecs: storyData.prototypeSpecs || [{ label: 'Status', value: 'Prototype Active' }],
+      materialsCostINR: storyData.materialsCostINR || 2500,
+      grantFundedBy: '100% Non-Profit Community Grant Pool',
+      publishedAt: 'Just now',
+      likesCount: 1,
+      verifiedByMentor: 'Dr. Vikram Seth (ATL Mentor)',
+    };
+
+    setStories((prev) => [newStory, ...prev]);
+    setSelectedStoryId(newStory.id);
+    showNotification('🎉 Your story has been submitted & published to the National Showcase!');
+  };
+
+  const handleJoinPod = (podId: string, role: string) => {
+    setPods((prev) =>
+      prev.map((p) => {
+        if (p.id !== podId) return p;
+        if (p.teamSize >= p.maxTeamSize) {
+          showNotification('This pod is currently full.');
+          return p;
+        }
+        showNotification(`🚀 Success! You applied to join ${p.title} as a ${role}.`);
+        return {
+          ...p,
+          teamSize: p.teamSize + 1,
+          lookingFor: p.lookingFor.filter((item) => !item.toLowerCase().includes(role.toLowerCase())),
+        };
+      })
+    );
+  };
+
+  const handleCreatePod = (podData: Partial<InnovationPod>) => {
+    const newPod: InnovationPod = {
+      id: `POD-${Math.floor(200 + Math.random() * 800)}`,
+      title: podData.title || 'New STEM Innovation Pod',
+      domain: podData.domain || 'Robotics & Hardware',
+      leadStudent: `${currentUser.name} (${currentUser.age}yo)`,
+      leadStudentAge: currentUser.age || 15,
+      mentorName: podData.mentorName || 'Dr. Vikram Seth (Assigned ATL Mentor)',
+      schoolOrCollege: podData.schoolOrCollege || 'Pan-India Student Pod',
+      teamSize: 1,
+      maxTeamSize: podData.maxTeamSize || 4,
+      lookingFor: podData.lookingFor || ['Hardware Tester', 'CAD Modeler'],
+      description: podData.description || 'Collaborative non-profit youth innovation pod.',
+      progressPercent: 15,
+      grantApprovedINR: podData.grantApprovedINR || 5000,
+      badges: ['Newly Formed', 'Open For Members'],
+    };
+
+    setPods((prev) => [newPod, ...prev]);
+    showNotification(`✨ Innovation Pod "${newPod.title}" created successfully!`);
+  };
+
   const handleToggleToolAuthorization = (minorUserId: string, toolTier: number) => {
     showNotification(`Guardian updated safety matrix authorization for tool tier ${toolTier}`);
   };
@@ -327,6 +427,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         users,
         activeTab,
         setActiveTab,
+        stories,
+        selectedStoryId,
+        setSelectedStoryId,
+        handleLikeStory,
+        handleCreateStory,
+        pods,
+        handleJoinPod,
+        handleCreatePod,
         orders,
         selectedOrderId,
         setSelectedOrderId,

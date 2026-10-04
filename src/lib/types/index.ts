@@ -9,6 +9,48 @@ export type Role =
   | 'SPONSOR'
   | 'PLATFORM_ADMIN';
 
+export type ActiveTab = 'YOUTUBE' | 'STORIES' | 'PROJECTS' | 'TALENT' | 'EXPERIENCE' | 'SAFETY';
+
+export interface InnovationStory {
+  id: string;
+  title: string;
+  subtitle: string;
+  author: string;
+  authorAge: number;
+  authorRole: string;
+  authorAvatar: string;
+  category: 'ROBOTICS' | 'CLEANTECH' | 'AI_BIOTECH' | 'AEROSPACE' | 'COMMUNITY_IMPACT';
+  readTime: string;
+  coverImage: string;
+  tags: string[];
+  summary: string;
+  fullContent: string;
+  keyConcepts: string[];
+  prototypeSpecs: { label: string; value: string }[];
+  materialsCostINR: number;
+  grantFundedBy: string;
+  publishedAt: string;
+  likesCount: number;
+  verifiedByMentor: string;
+}
+
+export interface InnovationPod {
+  id: string;
+  title: string;
+  domain: string;
+  leadStudent: string;
+  leadStudentAge: number;
+  mentorName: string;
+  schoolOrCollege: string;
+  teamSize: number;
+  maxTeamSize: number;
+  lookingFor: string[];
+  description: string;
+  progressPercent: number;
+  grantApprovedINR: number;
+  badges: string[];
+}
+
 export interface User {
   id: string;
   name: string;
@@ -22,6 +64,11 @@ export interface User {
   rating?: number;
   completedProjectsCount?: number;
   authorizedToolTiers?: number[]; // e.g. [1, 2, 3]
+  location?: string;
+  bio?: string;
+  stemInterests?: string[];
+  experienceHours?: number;
+  nepCreditsEarned?: number;
 }
 
 export type CreatorTierLevel =

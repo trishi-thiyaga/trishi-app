@@ -6,6 +6,8 @@ import {
   SponsorshipAgreement,
   ModeratedMessage,
   CreatorTierInfo,
+  InnovationStory,
+  InnovationPod,
 } from '../types';
 
 export const CREATOR_TIERS: CreatorTierInfo[] = [
@@ -78,23 +80,6 @@ export const CREATOR_TIERS: CreatorTierInfo[] = [
 
 export const INITIAL_USERS: User[] = [
   {
-    id: 'user-req-1',
-    name: 'Ananya Sharma',
-    role: 'STUDENT_REQUESTER',
-    avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150',
-    age: 15,
-    isMinor: true,
-    guardianName: 'Sunil Sharma',
-  },
-  {
-    id: 'user-req-2',
-    name: 'Dr. Elena Vance',
-    role: 'RESEARCHER_REQUESTER',
-    avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150',
-    age: 34,
-    isMinor: false,
-  },
-  {
     id: 'user-creator-1',
     name: 'Aarav Patel',
     role: 'MINOR_CREATOR',
@@ -107,6 +92,11 @@ export const INITIAL_USERS: User[] = [
     rating: 4.9,
     completedProjectsCount: 6,
     authorizedToolTiers: [1, 2],
+    location: 'Pune, Maharashtra',
+    bio: '14yo robotics enthusiast & IoT tinkerer. Built solar hydroponics & crop health rovers. Passionate about sustainable agriculture sensors.',
+    stemInterests: ['Robotics', 'ESP32 & IoT', 'Sensors', '3D Printing'],
+    experienceHours: 128,
+    nepCreditsEarned: 14,
   },
   {
     id: 'user-creator-2',
@@ -119,14 +109,43 @@ export const INITIAL_USERS: User[] = [
     rating: 4.95,
     completedProjectsCount: 18,
     authorizedToolTiers: [1, 2, 3, 4],
+    location: 'Bengaluru, Karnataka',
+    bio: '3rd year B.Tech Mechatronics student at RVCE. Mentoring 12+ school students in robotics, drone flight controllers, and PCB design.',
+    stemInterests: ['Embedded Systems', 'ROS2 Robotics', 'PCB Milling', 'Drone Avionics'],
+    experienceHours: 420,
+    nepCreditsEarned: 36,
   },
   {
-    id: 'user-guardian-1',
-    name: 'Priya Patel',
-    role: 'GUARDIAN',
-    avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150',
-    age: 42,
-    isMinor: false,
+    id: 'user-creator-3',
+    name: 'Trisha Sen',
+    role: 'MINOR_CREATOR',
+    avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150',
+    age: 16,
+    isMinor: true,
+    guardianName: 'Amit Sen',
+    tier: 'Idea Groomer',
+    rating: 4.88,
+    completedProjectsCount: 9,
+    authorizedToolTiers: [1, 2],
+    location: 'Kolkata, West Bengal',
+    bio: 'Class 11 STEM student working on assistive devices for visually impaired peers using ultrasonic haptic arrays and edge AI vision.',
+    stemInterests: ['Assistive Tech', 'Computer Vision', 'MicroPython', 'Arduino'],
+    experienceHours: 195,
+    nepCreditsEarned: 22,
+  },
+  {
+    id: 'user-req-1',
+    name: 'Ananya Sharma',
+    role: 'STUDENT_REQUESTER',
+    avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150',
+    age: 15,
+    isMinor: true,
+    guardianName: 'Sunil Sharma',
+    location: 'New Delhi, Delhi',
+    bio: 'Grade 9 science fair participant eager to learn hands-on renewable energy prototypes and partner with peer builders.',
+    stemInterests: ['Solar Energy', 'Hydroponics', 'Bio-Plastics'],
+    experienceHours: 45,
+    nepCreditsEarned: 6,
   },
   {
     id: 'user-mentor-1',
@@ -135,14 +154,30 @@ export const INITIAL_USERS: User[] = [
     avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150',
     age: 48,
     isMinor: false,
+    location: 'Hyderabad, Telangana',
+    bio: 'Senior STEM Professor & ATAL Tinkering Lab (ATL) Mentor. Validating student prototypes, ensuring safety compliance, and guiding research.',
+    stemInterests: ['ATL Safety Standards', 'Applied Physics', 'Circuit Theory', 'Academic Mentorship'],
+    experienceHours: 850,
+  },
+  {
+    id: 'user-guardian-1',
+    name: 'Priya Patel',
+    role: 'GUARDIAN',
+    avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150',
+    age: 42,
+    isMinor: false,
+    location: 'Pune, Maharashtra',
+    bio: 'Parent & guardian of Aarav Patel. Supporting experiential learning, DPDP safety oversight, and laboratory tool permissions.',
   },
   {
     id: 'user-sponsor-1',
-    name: 'Nexus Innovation Labs',
+    name: 'Nexus Non-Profit Foundation',
     role: 'SPONSOR',
     avatarUrl: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=150',
     age: 35,
     isMinor: false,
+    location: 'Pan-India',
+    bio: '100% Non-profit CSR foundation providing zero-fee component grants, 3D printing supplies, and microcontroller kits to young innovators.',
   },
 ];
 
@@ -541,5 +576,187 @@ export const INITIAL_MODERATED_MESSAGES: ModeratedMessage[] = [
     timestamp: '2026-08-17T16:05:00Z',
     flaggedKeywords: [],
     isApproved: true,
+  },
+];
+
+export const INITIAL_STORIES: InnovationStory[] = [
+  {
+    id: 'STORY-001',
+    title: 'How a 14-Year-Old Built an AI Autonomous Farm Rover in Pune',
+    subtitle: 'From a broken toy car chassis to a solar-assisted crop health rover: The story of Aarav & Rohan’s cross-grade maker collaboration.',
+    author: 'Aarav Patel & Rohan Deshmukh',
+    authorAge: 14,
+    authorRole: 'Student Builder & College Mentor',
+    authorAvatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150',
+    category: 'ROBOTICS',
+    readTime: '4 min read',
+    coverImage: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800',
+    tags: ['ESP32', 'Edge AI', 'Solar Power', 'NEP 2020 Experiential Credit'],
+    summary: 'Using 100% non-profit open grants, 14-year-old Aarav partnered with mechatronics undergraduate Rohan to engineer a 4WD soil analysis robot with offline computer vision.',
+    fullContent: `
+### The Spark
+During a weekend visit to his grandparents' farm near Pune, Aarav noticed how fungal leaf rust often destroys tomato crops before farmers spot the early signs. Instead of a theoretical science fair poster, Aarav wanted to build a working robotic scout that could drive autonomously between crop furrows.
+
+### Connecting Through Young Dream Innovators
+Aarav posted an initial sketch on the Young Innovator Idea Board. Rohan Deshmukh (20yo, Mechatronics student at RVCE Bengaluru) saw the post and volunteered as an engineering mentor.
+
+Together, they scoped the bill of materials:
+- **Chassis:** Laser-cut acrylic & 3D printed PETG suspension (Class 2 tools authorized by Aarav's guardian).
+- **Core Controller:** ESP32-CAM with TinyML quantized neural network for on-device leaf spot detection.
+- **Power System:** 10W monocrystalline solar cell with MPPT charging circuit.
+
+### Zero-Profit Grant Funding
+Through the community non-profit grant pool funded by CSR sponsors, 100% of the raw components (₹3,850) were delivered directly to Aarav's home lab without any platform markups or fees.
+
+### What Aarav Learned
+"I used to think AI was only for big software companies. With Rohan's mentorship, I flashed micro-Python onto an ESP32 and trained a custom TensorFlow Lite model with 80 leaf photos! Building something real taught me more than an entire textbook chapter."
+    `,
+    keyConcepts: [
+      'Convolutional Neural Networks (TinyML on Edge)',
+      'Solar Photovoltaic MPPT Efficiency',
+      'I2C Sensor Multiplexing & MicroPython',
+      'Mechanical Gear Ratio Torque Calculation',
+    ],
+    prototypeSpecs: [
+      { label: 'Drive System', value: '4x Metal Gear TT Motors (1:48 ratio)' },
+      { label: 'Compute', value: 'ESP32-S3 Dual Core 240MHz + OV2640 Camera' },
+      { label: 'Battery Life', value: '6.5 hours continuous patrol (Solar-Assisted)' },
+      { label: 'Inference Latency', value: '180ms per frame offline' },
+    ],
+    materialsCostINR: 3850,
+    grantFundedBy: 'Pan-India Youth STEM Non-Profit Fund',
+    publishedAt: '2 days ago',
+    likesCount: 142,
+    verifiedByMentor: 'Dr. Vikram Seth (ATL Mentor)',
+  },
+  {
+    id: 'STORY-002',
+    title: 'Haptic Vision: Class 11 Student Designs Ultrasonic Smart Glasses',
+    subtitle: 'Trisha Sen engineered open-source multi-directional spatial audio glasses to empower visually impaired students in navigation.',
+    author: 'Trisha Sen',
+    authorAge: 16,
+    authorRole: 'Idea Groomer & High-School Maker',
+    authorAvatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150',
+    category: 'COMMUNITY_IMPACT',
+    readTime: '5 min read',
+    coverImage: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800',
+    tags: ['Assistive Tech', 'Arduino Pro Mini', 'Haptics', 'Open Source'],
+    summary: 'A lightweight 3D-printed wearable that converts obstacle proximity into gentle haptic pulses, enabling independent indoor navigation.',
+    fullContent: `
+### Real-World Inspiration
+Trisha noticed that visually impaired classmates frequently bumped into low-hanging tree branches and elevated stair railings that traditional white canes miss.
+
+### Collaborative Development
+Working in an open innovation pod with two peer makers, Trisha designed custom 3D printed temple frames housing dual ultrasonic transducers angled at 45 degrees upward and forward.
+
+### Results & Open Source Release
+The entire CAD files and firmware have been published free for public ATAL Tinkering Labs (ATLs) across India, costing less than ₹1,200 in raw parts.
+    `,
+    keyConcepts: [
+      'Ultrasonic Time-of-Flight Wave Reflection',
+      'PWM Haptic Motor Modulation',
+      'Ergonomic Biocompatible 3D Printing (PLA+)',
+      'Low-Power Sleep Modes (8mA active)',
+    ],
+    prototypeSpecs: [
+      { label: 'Detection Range', value: '2cm to 400cm with ±3mm accuracy' },
+      { label: 'Weight', value: '48 grams (featherlight)' },
+      { label: 'Battery', value: 'LiPo 500mAh with USB-C safety charging' },
+      { label: 'Cost to Assemble', value: '₹1,180 (100% Grant Covered)' },
+    ],
+    materialsCostINR: 1180,
+    grantFundedBy: 'National Inclusive STEM Foundation',
+    publishedAt: '5 days ago',
+    likesCount: 219,
+    verifiedByMentor: 'Prof. Anjali Roy (IIT Kharagpur Alum)',
+  },
+  {
+    id: 'STORY-003',
+    title: 'Clean Water Everywhere: The Low-Cost Solar Thermal Condenser',
+    subtitle: 'Grade 9 student Ananya Sharma collaborated with college mentors to distill greywater using parabolic mirrors and heat pipes.',
+    author: 'Ananya Sharma',
+    authorAge: 15,
+    authorRole: 'Student Requester & Explorer',
+    authorAvatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150',
+    category: 'CLEANTECH',
+    readTime: '3 min read',
+    coverImage: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?w=800',
+    tags: ['Thermodynamics', 'Clean Water', 'Solar Thermal', 'Science Fair'],
+    summary: 'A zero-electricity distillation unit that purifies brackish water using optical solar concentrators and copper heat dissipation.',
+    fullContent: `
+### The Challenge
+Access to clean distilled water for rural science labs is often limited by electricity access. Ananya wanted to create a passive, solar-driven distillation system that can be fabricated using readily available scrap materials.
+
+### Pod Collaboration
+Ananya teamed up with university mentors who helped verify the thermodynamics equations and safe pressure relief valves.
+    `,
+    keyConcepts: [
+      'Latent Heat of Vaporization',
+      'Parabolic Reflector Geometry',
+      'Total Dissolved Solids (TDS) Measurement',
+      'Convective Heat Transfer',
+    ],
+    prototypeSpecs: [
+      { label: 'Daily Yield', value: '3.2 Litres pure water / 6 hours sunlight' },
+      { label: 'TDS Reduction', value: 'From 850 PPM down to 14 PPM' },
+      { label: 'Materials Used', value: 'Recycled Aluminum, Copper Pipe, Glass Vessel' },
+      { label: 'Operating Cost', value: '₹0 (Zero Electricity)' },
+    ],
+    materialsCostINR: 2100,
+    grantFundedBy: 'Green Earth Young Innovators Fellowship',
+    publishedAt: '1 week ago',
+    likesCount: 98,
+    verifiedByMentor: 'Dr. Vikram Seth (ATL Mentor)',
+  },
+];
+
+export const INITIAL_PODS: InnovationPod[] = [
+  {
+    id: 'POD-101',
+    title: 'Autonomous Agro-Bot Collective',
+    domain: 'Agricultural Robotics & Edge Vision',
+    leadStudent: 'Aarav Patel (14yo)',
+    leadStudentAge: 14,
+    mentorName: 'Rohan Deshmukh (Mechatronics Senior)',
+    schoolOrCollege: 'Vibgyor High, Pune & RVCE Bengaluru',
+    teamSize: 3,
+    maxTeamSize: 4,
+    lookingFor: ['Flutter App Designer', 'Sensor Calibration Tester'],
+    description: 'Building small-footprint solar rovers to detect soil nitrogen levels and early leaf blight for organic farms.',
+    progressPercent: 75,
+    grantApprovedINR: 8500,
+    badges: ['Active Sprint', 'ATL Lab Verified', 'Open Hardware'],
+  },
+  {
+    id: 'POD-102',
+    title: 'Assistive Tech Haptic Pod',
+    domain: 'Accessible Wearables & Ultrasonic Spatial Sound',
+    leadStudent: 'Trisha Sen (16yo)',
+    leadStudentAge: 16,
+    mentorName: 'Prof. Anjali Roy',
+    schoolOrCollege: 'DPS Ruby Park, Kolkata',
+    teamSize: 2,
+    maxTeamSize: 3,
+    lookingFor: ['3D CAD Designer (Fusion 360)', 'MicroPython Dev'],
+    description: 'Creating affordable obstacle detection wearables for visually impaired school children across government schools.',
+    progressPercent: 60,
+    grantApprovedINR: 5200,
+    badges: ['Social Good', 'Open Source', 'Field Testing'],
+  },
+  {
+    id: 'POD-103',
+    title: 'Clean Energy & Solar Stills',
+    domain: 'Thermal Energy & Environmental Sensing',
+    leadStudent: 'Ananya Sharma (15yo)',
+    leadStudentAge: 15,
+    mentorName: 'Dr. Vikram Seth',
+    schoolOrCollege: 'Modern School, New Delhi',
+    teamSize: 2,
+    maxTeamSize: 4,
+    lookingFor: ['Data Logger Dev (ESP32)', 'Poster Designer'],
+    description: 'Developing passive solar water purifiers and automated TDS telemetry for rural schools.',
+    progressPercent: 40,
+    grantApprovedINR: 4000,
+    badges: ['NEP 2020 Aligned', 'Science Fair Prep'],
   },
 ];

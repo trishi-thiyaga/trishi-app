@@ -93,10 +93,10 @@ export const YoungInnovatorHero: React.FC = () => {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '14px' }}>
               <span className="badge badge-saffron" style={{ fontSize: '0.75rem' }}>
-                <Flame size={14} /> National STEM & Innovation Ecosystem
+                <Flame size={14} /> 100% Non-Profit Youth STEM Network
               </span>
               <span className="badge badge-cyan" style={{ fontSize: '0.75rem' }}>
-                <Sparkles size={14} /> ₹ INR Powered Student Grants
+                <Sparkles size={14} /> Free Component Grants & 0% Fees
               </span>
             </div>
 
@@ -109,7 +109,7 @@ export const YoungInnovatorHero: React.FC = () => {
                 marginBottom: '14px',
               }}
             >
-              Where Young Minds Turn Ideas Into <span className="gradient-text">Working Inventions</span> 🇮🇳
+              Connect Young Minds. Build <span className="gradient-text">Real Inventions</span>. Gain Experience 🇮🇳
             </h1>
 
             <p
@@ -121,8 +121,9 @@ export const YoungInnovatorHero: React.FC = () => {
                 maxWidth: '680px',
               }}
             >
-              "Every great scientist, robotics engineer & startup founder started as a kid with an idea."
-              Join India's premier community of young makers. Build real physical science models, collaborate on invention RFCs, earn milestone payouts in ₹ INR, and get recognized by mentors and industry sponsors.
+              "Every great scientist, robotics engineer & innovator started as a curious kid with an idea."
+              Connect with fellow school tinkerers, college engineering mentors, and ATL mentors across India.
+              Form collaborative squads, build working physical prototypes, gain verified NEP 2020 STEM experience hours, and access free non-profit material grants.
             </p>
 
             {/* Action Buttons */}
@@ -135,15 +136,15 @@ export const YoungInnovatorHero: React.FC = () => {
                 className="btn-saffron"
                 style={{ fontSize: '0.95rem', padding: '12px 26px' }}
               >
-                <Rocket size={18} /> Enroll as a Young Innovator
+                <Rocket size={18} /> Join the Talent Network
               </button>
 
               <button
-                onClick={() => setActiveTab('IDEAS')}
+                onClick={() => setActiveTab('TALENT')}
                 className="btn-secondary"
                 style={{ fontSize: '0.95rem', padding: '12px 22px' }}
               >
-                <Zap size={18} color="var(--accent-cyan)" /> Explore Invention RFCs <ArrowRight size={16} />
+                <Zap size={18} color="var(--accent-cyan)" /> Find Co-Makers & Pods <ArrowRight size={16} />
               </button>
             </div>
           </div>
@@ -163,39 +164,39 @@ export const YoungInnovatorHero: React.FC = () => {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--accent-cyan)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                ⚡ Live Platform Impact
+                ⚡ Non-Profit Community Impact
               </span>
               <span className="badge badge-emerald" style={{ fontSize: '0.65rem' }}>
-                Verified Live
+                100% Free Grants
               </span>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
               <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#38bdf8' }}>1,200+</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Student Prototypes Delivered</div>
+                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#38bdf8' }}>500+ hrs</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Verified Experiential Learning</div>
               </div>
 
               <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#fbbf24' }}>₹18.5L+</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Maker Stipends & Escrow Payouts</div>
+                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#fbbf24' }}>₹0 Fee</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>100% Non-Profit Open Access</div>
               </div>
 
               <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#34d399' }}>100%</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>COPPA & DPDP Child Safe</div>
+                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#34d399' }}>DPDP Act</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Guardian Monitored Safety</div>
               </div>
 
               <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#c084fc' }}>4.92 ★</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Science Fair Rating</div>
+                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#c084fc' }}>NEP 2020</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>School STEM Credit Ready</div>
               </div>
             </div>
 
             {/* Active Inspiration Ticker */}
             <div style={{ paddingTop: '10px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
               <Sparkles size={14} color="var(--accent-saffron)" />
-              <span>Trending in India: <strong>Solar River Cleaners</strong> • <strong>IoT Soil Monitoring</strong> • <strong>AI Prosthetics</strong></span>
+              <span>Pods Building Now: <strong>Autonomous Farm Rover</strong> • <strong>Haptic Smart Glasses</strong> • <strong>Solar Distiller</strong></span>
             </div>
           </div>
         </div>

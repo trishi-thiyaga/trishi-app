@@ -1,10 +1,9 @@
 import './globals.css';
-import { AppProvider } from '@/lib/context/AppContext';
 
 export const metadata = {
-  title: 'Young Dream Innovators — Student Maker & Innovation Platform',
+  title: 'Young Dream Innovators — Official YouTube STEM & Maker Channel',
   description:
-    'A platform connecting young scientists and student makers for physical prototype building, idea grooming, sponsorship escrow, and creator skill growth.',
+    'Official website for @YoungDreamInnovators. Watch hands-on STEM experiments, DIY electric drones, boats, and youth innovation projects.',
 };
 
 export default function RootLayout({
@@ -14,9 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <AppProvider>{children}</AppProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

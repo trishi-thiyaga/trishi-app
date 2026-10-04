@@ -33,19 +33,19 @@ export const OrdersView: React.FC = () => {
   return (
     <div style={{ maxWidth: '1400px', margin: '24px auto', padding: '0 20px' }}>
       {/* Top Banner */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
           <span className="badge badge-cyan" style={{ marginBottom: '6px' }}>
-            Workflow A — Order-Based Prototype Delivery
+            🔬 Non-Profit Innovation Lab & Prototype Engine
           </span>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Project Intake & Prototype Delivery Engine</h1>
+          <h1 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Collaborative Projects & Material Grants</h1>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            Students & schools order working physical STEM prototypes built by verified young makers with stage-by-stage build logs.
+            Build working physical STEM prototypes with 100% free material grants, mentor reviews, and viva explainer packs.
           </p>
         </div>
 
         <button onClick={() => setIsIntakeOpen(true)} className="btn-primary">
-          <Plus size={18} /> Request New Project Prototype
+          <Plus size={18} /> Requisition New Project Grant
         </button>
       </div>
 
